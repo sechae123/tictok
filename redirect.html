@@ -1,0 +1,33 @@
+<!-- redirect.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TikTok OAuth Redirect</title>
+</head>
+<body>
+  <h1>Authentication Successful 🎉</h1>
+  <p id="message">Processing...</p>
+
+  <script>
+    // URL에서 code와 state 추출
+    const urlParams = new URLSearchParams(window.location.search);
+    const code = urlParams.get('code');
+    const state = urlParams.get('state');
+
+    if (code) {
+      document.getElementById('message').innerText = `Authorization code: ${code}\nState: ${state}`;
+      
+      // 👉 서버로 전달하거나 이후 로직 처리 (예시)
+      // fetch('/api/auth/tiktok', {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify({ code, state })
+      // });
+
+    } else {
+      document.getElementById('message').innerText = 'No authorization code found in URL.';
+    }
+  </script>
+</body>
+</html>
